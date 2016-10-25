@@ -2,13 +2,6 @@ version: 0.0.{build}
 
 configuration: Release
 
-install:
-  - ps: Write-Host -NoNewline "Installing NuGet 3.5.0..."
-  - ps: if (Test-Path 'C:\Tools\NuGet3') { $nugetDir = 'C:\Tools\NuGet3' } else { $nugetDir = 'C:\Tools\NuGet' }
-  - ps: (New-Object Net.WebClient).DownloadFile('https://dist.nuget.org/win-x86-commandline/v3.5.0-rc1/NuGet.exe', "$nugetDir\NuGet.exe")
-  - ps: Write-Host "OK" -ForegroundColor Green
-#- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/install-nuget-3-3-0.ps1'))
-
 init:
 - ps: Update-AppveyorBuild -Version "0.0.$env:appveyor_build_number-sha.$($env:appveyor_repo_commit.substring(0,7))"
 
