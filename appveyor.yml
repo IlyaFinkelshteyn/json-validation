@@ -27,8 +27,8 @@ pull_requests:
   do_not_increment_build_number: true
 
 before_build:
-  nuget restore
-  nuget help | findstr /psi "version"
+  - nuget restore
+  - nuget help | findstr /psi "version"
 
 build:
   publish_nuget: true
