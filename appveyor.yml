@@ -4,6 +4,7 @@ configuration: Release
 
 init:
 - ps: Update-AppveyorBuild -Version "0.0.$env:appveyor_build_number-sha.$($env:appveyor_repo_commit.substring(0,7))"
+- ps: Write-host "APPVEYOR_BUILD_VERSION: $env:APPVEYOR_BUILD_VERSION"
 
 nuget:
   disable_publish_on_pr: true
@@ -32,7 +33,8 @@ build:
   publish_nuget_symbols: true
   
 after_build:
-  dir
+  - dir
+  - type DotJEM.Json.Validation\Properties\AssemblyInfo.cs
 
 #deploy:
 #  provider: NuGet
