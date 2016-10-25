@@ -28,6 +28,7 @@ pull_requests:
 
 before_build:
   nuget restore
+  nuget help | findstr /psi "version"
 
 build:
   publish_nuget: true
